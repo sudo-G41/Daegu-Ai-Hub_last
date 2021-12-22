@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>loading...</h1>
+    <h2 id="time"></h2>
+    <a href="/">a</a>
+    <script>
+        setInterval(function(){$.ajax({
+            url: '/video_downloading',
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if(!response["alive"]){
+                    // alert("!!!!")
+                    location.replace("/");
+                    window.close();
+                }
+                $("#time").html(response["stauts"]);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })}, 1000);
+    </script>
+</body>
+</html>

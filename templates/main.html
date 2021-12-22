@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Downloader</title>
+</head>
+<body>
+    <h1>Youtube</h1>
+    <ol>
+        <li><a onclick="openWindowPop('/video', 'popup')">Video</a></li>
+        <!-- <li><a href="/video">Video</a></li> -->
+        <li><a href="TDownload.html">Thumbnail</a></li>
+    </ol>
+    <h2>wlecome Downloader</h2>
+    <script>
+        function openWindowPop(url, name){
+            var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+            window.open(url, name, options);
+        }
+    </script>
+</body>
+</html>
