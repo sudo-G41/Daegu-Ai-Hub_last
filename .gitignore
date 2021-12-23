@@ -1,2 +1,3 @@
 *.csv
 *.manifest
+__pycache__
