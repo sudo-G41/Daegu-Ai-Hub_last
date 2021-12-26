@@ -1,4 +1,5 @@
 *.csv
 *.manifest
+*.webm
 __pycache__
 mytest.py
