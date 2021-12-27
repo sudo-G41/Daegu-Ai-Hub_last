@@ -74,6 +74,7 @@ ydl_opts = {
     }],
     'logger': MyLogger(),
     'progress_hooks': [my_hook],
+    'outtmpl':u'download/%(id)s.%(ext)s'
 }
 
 
@@ -84,13 +85,8 @@ yt_dlp.utils.std_headers.update({'Referer': 'https://www.google.com'})
 # Eg: "ydl.download", "ydl.download_with_info_file"
 def download(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        print("call youtude-dl")
         ydl.add_post_processor(MyCustomPP())
-        print("youtube 1")
         info = ydl.extract_info(url)
-        print(type(info))
-        # df = pd.read_json(info)
-        # df.to_csv("f.csv")
-        print("youtube 2")
         # ℹ️ ydl.sanitize_info makes the info json-serializable
         js = json.dumps(ydl.sanitize_info(info))
-        print("youtube test")
