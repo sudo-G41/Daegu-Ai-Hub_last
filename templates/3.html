@@ -6,46 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/loading/loading.css">
 </head>
 <body>
-    <img class="mb-4" id="thumbnail" alt="" width="100%" height="100%">
-    <h2 id="time"></h2>
+    <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-text">loading</div>
+    </div>
+    
+    <input type="hidden" name="tag" id="3html_ytHashTag" value="{{tag}}">
     <script>
-        setTimeout(function(){$.ajax({
+        setTimeout(function(){
+            console.log("this???");
+            let tag = $("#3html_ytHashTag").val();
+            console.log(tag);
+            $.ajax({
             url: "/video_downloading",
             type: 'POST',
+            data:{
+                "tag":tag
+            },
             success: function(response) {
-                console.log(response["url"]);
-                console.log("why");
-                let hash = tagName(response["url"]);
-                location.replace("/video_file/"+hash);
+                console.log(tag+"downloading...");
+                location.replace("/video_file/"+tag);
             },
             error: function(error) {
                 console.log(error);
+                alert("오류가 발생하였습니다.\nURL과 섬네일을 다시 확인해 주시고\n잠시 후 다시 실행하여 주세요.");
+                self.close();
             }
         })}, 1000);
-        setTimeout(function(){$.ajax({
-            url: "/video_downloading/l",
-            type: 'POST',
-            success: function(response) {
-                console.log("...");
-                let hash = tagName(response["url"]);
-                console.log(hash);
-                console.log("...");
-                let thUrl = "https://img.youtube.com/vi/"+hash+"/hqdefault.jpg";
-                $("#thumbnail").attr("src",thUrl);
-                $("#time").html("loading...");
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        })}, 1000);
-        function tagName(url){
-            const urlPattern = /(http|https):\/\/(youtu.be\/|www.youtube.com\/watch\?v=)/;
-            console.log(typeof url)
-            var isa = url.replace(urlPattern,"");
-            return isa;
-        }
     </script>
 </body>
 </html>

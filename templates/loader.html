@@ -9,13 +9,9 @@
 </head>
 <body onload="t('{{files}}')">
     <form action="/video_files" method="post" name="download">
-        <input type="text" value="{{files}}" name="aaa">
-        <input type="submit" value="download">
     </form>
     <script>
         function t(n) {
-            // document.getElementById("download").click();
-            // document.submitForm.submit();
             opener.location.href = "/video_files/"+n
             self.close()
             return true;
